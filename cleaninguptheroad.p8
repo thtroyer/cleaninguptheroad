@@ -14,40 +14,40 @@ car_timer = nil
 
 -- utility methods
 function random(minimum, maximum)
- return rnd(maximum-minimum) + minimum
+	return rnd(maximum-minimum) + minimum
 end
 
 function random_int(low, high)
- return flr(rnd(high+1-low))+low
+	return flr(rnd(high+1-low))+low
 end
 
 function log(msg)
- printh(msg, "log.txt", false)
+	printh(msg, "log.txt", false)
 end
 
 function debug(msg)
- print(msg, 20, 20, 7)
+	print(msg, 20, 20, 7)
 end
 
 function handle_controllers()
- for i,player in pairs(players) do
-  local mov_x = 0
-  if(btn(⬅️,i-1)) then 
-   mov_x = -1
-  elseif(btn(➡️,i-1)) then 
-   mov_x = 1
-  end
- 
-  local mov_y = 0
-  if(btn(⬆️,i-1)) then mov_y = -1
-  elseif(btn(⬇️,i-1)) then mov_y = 1 end
-  
-  player:move(mov_x, mov_y)
-  
-  if(btnp(❎,i-1)) then 
-   player:pickup(trashes)
-  end
- end
+	for i,player in pairs(players) do
+		local mov_x = 0
+		if(btn(⬅️,i-1)) then
+			mov_x = -1
+			elseif(btn(➡️,i-1)) then
+			mov_x = 1
+		end
+
+		local mov_y = 0
+		if(btn(⬆️,i-1)) then mov_y = -1
+		elseif(btn(⬇️,i-1)) then mov_y = 1 end
+
+		player:move(mov_x, mov_y)
+
+		if(btnp(❎,i-1)) then
+			player:pickup(trashes)
+		end
+	end
 end
 
 function is_any_trash_dropped_in_can()
@@ -65,54 +65,54 @@ function is_any_trash_dropped_in_can()
 		  del(trashes, trash)
 		 end		
 		end
- end
+	end
 end
 
 function move_cars()
- for i,car in pairs(cars) do
-  car:move()
-  if (car.y < -100) then
-   del(cars, car)
-  end
- end
+	for i,car in pairs(cars) do
+		car:move()
+		if (car.y < -100) then
+			del(cars, car)
+		end
+	end
 end
 
 function spawn_car()
- if (car_timer <= 0) then
-  add(cars, car:new())
-  car_timer = random(2*30, 3*30)
- end
- car_timer -= 1
+	if (car_timer <= 0) then
+		add(cars, car:new())
+		car_timer = random(2*30, 3*30)
+	end
+	car_timer -= 1
 end
 
 -- pico-8 hooks
 function _init()
- add(players, player:new(10,rnd(5)+10,1))
- add(players, player:new(5,rnd(20)+20,2)) 
- for i = 1,20,1 do
-  add(trashes, trash:new())
- end
- 
- car_timer = random(1*30, 2*30)
+	add(players, player:new(10,rnd(5)+10,1))
+	add(players, player:new(5,rnd(20)+20,2))
+	for i = 1,20,1 do
+		add(trashes, trash:new())
+	end
 
--- add(cars, car:new())
+	car_timer = random(1*30, 2*30)
+
+	-- add(cars, car:new())
 end
 
 function _update()
- handle_controllers()
- is_any_trash_dropped_in_can()
- spawn_car()
- move_cars()
+	handle_controllers()
+	is_any_trash_dropped_in_can()
+	spawn_car()
+	move_cars()
 end
 
 function _draw()
- cls()
- map()
- foreach(trashes, function(o) o:draw() end)
- foreach(players, function(o) o:draw() end)
- foreach(cars, function(o) o:draw() end)
-
+	cls()
+	map()
+	foreach(trashes, function(o) o:draw() end)
+	foreach(players, function(o) o:draw() end)
+	foreach(cars, function(o) o:draw() end)
 end
+
 -->8
 -- player object
 player = {}
@@ -132,48 +132,48 @@ function player:new(x,y,sprite_id)
 end
 
 function player:draw()
- spr(self.sprite_id, self.x, self.y, 1, 1, self.is_looking_left)
+	spr(self.sprite_id, self.x, self.y, 1, 1, self.is_looking_left)
 end
 
 function player:move(mov_x, mov_y)
- self.dx = mov_x
- self.dy = mov_y
- 
- if (mov_x == 1) then
-  self.is_looking_left = false
- elseif (mov_x == -1) then
-  self.is_looking_left = true
- end
- 
- self.x += self.dx
- self.y += self.dy
- 
- if self.trash_obj != nil then
- 	if self.is_looking_left then
- 	 self.trash_obj.x = self.x - 6
- 	else
- 	 self.trash_obj.x = self.x + 6
- 	end
- 	self.trash_obj.y = self.y + 2
- end
+	self.dx = mov_x
+	self.dy = mov_y
+
+	if (mov_x == 1) then
+		self.is_looking_left = false
+	elseif (mov_x == -1) then
+		self.is_looking_left = true
+	end
+
+	self.x += self.dx
+	self.y += self.dy
+
+	if self.trash_obj != nil then
+		if self.is_looking_left then
+			self.trash_obj.x = self.x - 6
+		else
+			self.trash_obj.x = self.x + 6
+		end
+		self.trash_obj.y = self.y + 2
+	end
 end
 
 function player:pickup(trashes)
- if (self.trash_obj != nil) then
-  self.trash_obj = nil
-  sfx(1)
-  return
- end
- 
- for i,trash in pairs(trashes) do
-  if (trash.x > (self.x-8)) and (trash.x < (self.x+8)) then
-   if (trash.y > (self.y-8)) and (trash.y < (self.y+8)) then
-    self.trash_obj = trash
-    sfx(2)
-    break
-   end
-  end 
- end
+	if (self.trash_obj != nil) then
+		self.trash_obj = nil
+		sfx(1)
+		return
+	end
+
+	for i,trash in pairs(trashes) do
+		if (trash.x > (self.x-8)) and (trash.x < (self.x+8)) then
+			if (trash.y > (self.y-8)) and (trash.y < (self.y+8)) then
+				self.trash_obj = trash
+				sfx(2)
+				break
+			end
+		end
+	end
 end
 
 -->8
@@ -215,24 +215,28 @@ function car:new()
 -- 	log(o.moving_up)
 	
 	if o.moving_up then
-	 o.dy = -3
-  o.y = 128
-	 o.x = random_int(67,73)
+		o.dy = -3
+		o.y = 128
+		o.x = random_int(67,73)
 	end
 	
 	return o
 end
 
 function car:move()
- self.y += self.dy
+	self.y += self.dy
 end
 
 function car:draw()
- if self.moving_up then
-  spr(self.sprite_id, self.x, self.y, 2, 4)
- else
-  spr(self.sprite_id, self.x, self.y, 2, 4, false, true)
-  end
+	if self.moving_up then
+		spr(self.sprite_id, self.x, self.y, 2, 4)
+	else
+		spr(self.sprite_id, self.x, self.y, 2, 4, false, true)
+	end
+end
+
+function car:collide(players)
+	
 end
 
 
