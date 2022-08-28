@@ -207,7 +207,7 @@ function car:new()
 	setmetatable(o,self)
 	self.__index = self
 	
-	o.x = random_int(23,45)
+	o.x = random_int(28,43)
 	o.y = -20
 	o.sprite_id = 14 -- 12
 	o.dy = 3
@@ -229,25 +229,12 @@ end
 
 function car:draw()
  if self.moving_up then
-  spr(self.sprite_id, self.x, self.y)
-  spr(self.sprite_id+1, self.x+8, self.y)
-  spr(self.sprite_id+16, self.x, self.y+8)
-  spr(self.sprite_id+17, self.x+8, self.y+8)
-  spr(self.sprite_id+32, self.x, self.y+16)
-  spr(self.sprite_id+33, self.x+8, self.y+16)
-  spr(self.sprite_id+48, self.x, self.y+24)
-  spr(self.sprite_id+49, self.x+8, self.y+24) 
+  spr(self.sprite_id, self.x, self.y, 2, 4)
  else
-  spr(self.sprite_id, self.x, self.y)
-  spr(self.sprite_id+1, self.x+8, self.y)
-  spr(self.sprite_id+16, self.x, self.y+8)
-  spr(self.sprite_id+17, self.x+8, self.y+8)
-  spr(self.sprite_id+32, self.x, self.y+16)
-  spr(self.sprite_id+33, self.x+8, self.y+16)
-  spr(self.sprite_id+48, self.x, self.y+24)
-  spr(self.sprite_id+49, self.x+8, self.y+24)  
- end
+  spr(self.sprite_id, self.x, self.y, 2, 4, false, true)
+  end
 end
+
 
 __gfx__
 00000000000444000088008800000000000000000000000000000000000000000000000000000000000000000000000000003333333300000000888888880000
