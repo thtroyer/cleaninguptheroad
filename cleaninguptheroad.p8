@@ -60,8 +60,7 @@ function is_any_trash_dropped_in_can()
 		end
 		
 		if not is_held then
-		 if (trash.x > 5) and (trash.x < 12)
-		   and (trash.y > 82) and (trash.y < 88) then
+		 if (trash.x > 5) and (trash.x < 12) and (trash.y > 82) and (trash.y < 88) then
 		  del(trashes, trash)
 		 end		
 		end
@@ -88,14 +87,18 @@ end
 -- pico-8 hooks
 function _init()
 	add(players, player:new(10,rnd(5)+10,1))
-	add(players, player:new(5,rnd(20)+20,2))
+	add(players, player:new(5,rnd(20)+20,2)) 
 	for i = 1,20,1 do
 		add(trashes, trash:new())
 	end
 
 	car_timer = random(1*30, 2*30)
+end
 
-	-- add(cars, car:new())
+function cars_collision()
+	for _,car in pairs(cars) do
+		car:collide(players)
+	end
 end
 
 function _update()
@@ -103,6 +106,7 @@ function _update()
 	is_any_trash_dropped_in_can()
 	spawn_car()
 	move_cars()
+	cars_collision()
 end
 
 function _draw()
@@ -236,7 +240,16 @@ function car:draw()
 end
 
 function car:collide(players)
-	
+	for i,player in pairs(players) do
+--	 log("player " .. player.x .. ", " .. player.y)
+--	 log("car " .. self.x .. ", " .. self.y)
+	 
+		if (player.x+8 > self.x) and (self.x+16 > player.x) then
+			if (player.y+8 > self.y) and (self.y+48 > player.y) then
+				log("hit!")
+			end
+		end
+	end
 end
 
 
