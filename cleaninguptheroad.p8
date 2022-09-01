@@ -54,15 +54,15 @@ function is_any_trash_dropped_in_can()
  for i,trash in pairs(trashes) do
 		local is_held = false
 		for j,player in pairs(players) do
-		 if trash == player.trash_obj then
-		  is_held = true
-		 end
+			if trash == player.trash_obj then
+				is_held = true
+			end
 		end
 		
 		if not is_held then
-		 if (trash.x > 5) and (trash.x < 12) and (trash.y > 82) and (trash.y < 88) then
-		  del(trashes, trash)
-		 end		
+			if (trash.x > 5) and (trash.x < 12) and (trash.y > 82) and (trash.y < 88) then
+			del(trashes, trash)
+			end
 		end
 	end
 end
@@ -236,26 +236,26 @@ end
 function car:draw()
 	if self.moving_up then
 		spr(self.sprite_id, self.x, self.y, 2, 4)
-	 if (self.y > 128+20 and self.y < 128+40)
-		 or(self.y > 128+60 and self.y < 128+80) 
-		 or(self.y > 128+100 and self.y < 128+120) then
-	 	rectfill(40, 120, 80, 121, 8)
-	 end
+		if (self.y > 128+20 and self.y < 128+40)
+				or (self.y > 128+60 and self.y < 128+80)
+				or (self.y > 128+100 and self.y < 128+120) then
+			rectfill(40, 120, 80, 121, 8)
+		end
 	else
 		spr(self.sprite_id, self.x, self.y, 2, 4, false, true)
-	 if (self.y < -20-48 and self.y > -40-48)
-		 or(self.y < -60-48 and self.y > -80-48) 
-		 or(self.y < -100-48 and self.y > -120-48) then
-	 	rectfill(40, 5, 80, 6, 8)
-	 end
+		if (self.y < -20-48 and self.y > -40-48)
+				or(self.y < -60-48 and self.y > -80-48)
+				or(self.y < -100-48 and self.y > -120-48) then
+			rectfill(40, 5, 80, 6, 8)
+		end
 	end
 end
 
 function car:collide(players)
 	for i,player in pairs(players) do
---	 log("player " .. player.x .. ", " .. player.y)
---	 log("car " .. self.x .. ", " .. self.y)
-	 
+--log("player " .. player.x .. ", " .. player.y)
+--log("car " .. self.x .. ", " .. self.y)
+	
 		if (player.x+8 > self.x) and (self.x+16 > player.x) then
 			if (player.y+8 > self.y) and (self.y+48 > player.y) then
 				log("hit!")
