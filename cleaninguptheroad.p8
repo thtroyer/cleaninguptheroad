@@ -70,7 +70,7 @@ end
 function move_cars()
 	for i,car in pairs(cars) do
 		car:move()
-		if (car.y < -100) then
+		if car:should_destroy() then
 			del(cars, car)
 		end
 	end
@@ -79,7 +79,7 @@ end
 function spawn_car()
 	if (car_timer <= 0) then
 		add(cars, car:new())
-		car_timer = random(2*30, 3*30)
+		car_timer = random(3*30, 5*30)
 	end
 	car_timer -= 1
 end
@@ -92,7 +92,7 @@ function _init()
 		add(trashes, trash:new())
 	end
 
-	car_timer = random(1*30, 2*30)
+	car_timer = random(1*30, 3*30)
 end
 
 function cars_collision()
@@ -211,17 +211,19 @@ function car:new()
 	setmetatable(o,self)
 	self.__index = self
 	
-	o.x = random_int(28,43)
-	o.y = -20
-	o.sprite_id = 14 -- 12
-	o.dy = 3
+	-- moving down and defaults
+	o.sprite_id = 14 -- or 12
 	o.moving_up = random_int(1,2) == 1
--- 	log(o.moving_up)
 	
 	if o.moving_up then
 		o.dy = -3
-		o.y = 128
+		o.y = 250
 		o.x = random_int(67,73)
+	else
+	o.x = random_int(28,43)
+	o.y = -150
+	o.dy = 3
+	
 	end
 	
 	return o
@@ -234,8 +236,18 @@ end
 function car:draw()
 	if self.moving_up then
 		spr(self.sprite_id, self.x, self.y, 2, 4)
+	 if (self.y > 128+20 and self.y < 128+40)
+		 or(self.y > 128+60 and self.y < 128+80) 
+		 or(self.y > 128+100 and self.y < 128+120) then
+	 	rectfill(40, 105, 80, 106, 8)
+	 end
 	else
 		spr(self.sprite_id, self.x, self.y, 2, 4, false, true)
+	 if (self.y < 0-20 and self.y > 0-40)
+		 or(self.y < 0-60 and self.y > 0-80) 
+		 or(self.y < 0-100 and self.y > 0-120) then
+	 	rectfill(40, 5, 80, 6, 8)
+	 end
 	end
 end
 
@@ -252,6 +264,12 @@ function car:collide(players)
 	end
 end
 
+function car:should_destroy()
+	if self.moving_up then
+		return (self.y < -50)
+	end
+	return (self.y > 150)
+end
 
 __gfx__
 00000000000444000088008800000000000000000000000000000000000000000000000000000000000000000000000000003333333300000000888888880000
