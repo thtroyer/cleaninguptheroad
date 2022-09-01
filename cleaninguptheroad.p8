@@ -79,7 +79,7 @@ end
 function spawn_car()
 	if (car_timer <= 0) then
 		add(cars, car:new())
-		car_timer = random(3*30, 5*30)
+		car_timer = random(5*30, 20*30)
 	end
 	car_timer -= 1
 end
@@ -221,7 +221,7 @@ function car:new()
 		o.x = random_int(67,73)
 	else
 	o.x = random_int(28,43)
-	o.y = -150
+	o.y = -200
 	o.dy = 3
 	
 	end
@@ -239,13 +239,13 @@ function car:draw()
 	 if (self.y > 128+20 and self.y < 128+40)
 		 or(self.y > 128+60 and self.y < 128+80) 
 		 or(self.y > 128+100 and self.y < 128+120) then
-	 	rectfill(40, 105, 80, 106, 8)
+	 	rectfill(40, 120, 80, 121, 8)
 	 end
 	else
 		spr(self.sprite_id, self.x, self.y, 2, 4, false, true)
-	 if (self.y < 0-20 and self.y > 0-40)
-		 or(self.y < 0-60 and self.y > 0-80) 
-		 or(self.y < 0-100 and self.y > 0-120) then
+	 if (self.y < -20-48 and self.y > -40-48)
+		 or(self.y < -60-48 and self.y > -80-48) 
+		 or(self.y < -100-48 and self.y > -120-48) then
 	 	rectfill(40, 5, 80, 6, 8)
 	 end
 	end
