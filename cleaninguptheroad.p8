@@ -321,7 +321,7 @@ function car:collide(players)
 	for i,player in pairs(players) do
 	
 		if (player.x+8 > self.x) and (self.x+16 > player.x) then
-			if (player.y+8 > self.y) and (self.y+48 > player.y) then
+			if (player.y+5 > self.y) and (self.y+31 > player.y) then
 				player:run_over()
 			end
 		end
