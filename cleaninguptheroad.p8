@@ -51,7 +51,7 @@ function handle_controllers()
 end
 
 function is_any_trash_dropped_in_can()
- for i,trash in pairs(trashes) do
+	for i,trash in pairs(trashes) do
 		local is_held = false
 		for j,player in pairs(players) do
 			if trash == player.trash_obj then
@@ -145,19 +145,19 @@ function player:new(x,y,player_id)
 end
 
 function player:draw()
- self:countdown_timer()
+	self:countdown_timer()
 	
 	if (self.hearts <= 0) then
 		return
 	end
 	
 	sprite_id = self.sprite_id
- if (self.walk_state == 1) then
+	if (self.walk_state == 1) then
 		sprite_id += 1
- elseif (self.walk_state == 3) then
- 	sprite_id += 2
- end
- spr(sprite_id, self.x, self.y, 1, 1, self.is_looking_left)
+	elseif (self.walk_state == 3) then
+		sprite_id += 2
+	end
+	spr(sprite_id, self.x, self.y, 1, 1, self.is_looking_left)
 	self:draw_hearts()
 end
 
@@ -265,7 +265,7 @@ function trash:new()
 end
 
 function trash:draw()
- spr(self.sprite_id, self.x, self.y)
+	spr(self.sprite_id, self.x, self.y)
 end
 
 
