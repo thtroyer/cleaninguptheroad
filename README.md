@@ -5,6 +5,8 @@ Actively being worked on.
 
 This is my first PICO-8 project.  Code is in LUA and the .p8 files are viewable as text, but the project is best viewed in the PICO-8 project itself.
 
+![Pico8 cart](docs/cleaninguptheroad.p8.png)
+
 ## PICO-8 resources:
 https://www.lexaloffle.com/pico-8.php
 
