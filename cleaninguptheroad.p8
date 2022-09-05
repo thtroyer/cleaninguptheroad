@@ -190,8 +190,13 @@ function player:move(mov_x, mov_y)
 		end
 	end
 	
-	self.dx = mov_x
-	self.dy = mov_y
+	if not (self.hit_timer == nil) then
+		self.dx = mov_x * 0.3
+		self.dy = mov_y * 0.3
+	else
+		self.dx = mov_x
+		self.dy = mov_y
+	end
 
 	if (mov_x == 1) then
 		self.is_looking_left = false
@@ -212,6 +217,19 @@ function player:move(mov_x, mov_y)
 	end
 	
 	self.walk_timer -= 1
+	
+	-- boundries
+	if self.y > 130 then
+		self.y = 130
+	elseif self.y < -8 then 
+		self.y = -8
+	end
+	
+	if self.x > 130 then
+		self.x = 130
+	elseif self.x < -8 then 
+		self.x = -8
+	end
 end
 
 function player:pickup(trashes)
