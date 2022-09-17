@@ -9,7 +9,7 @@ players = {}
 trashes = {}
 cars = {}
 
--- timers
+-- global timers
 car_timer = nil
 
 -- utility methods
@@ -136,6 +136,7 @@ function player:new(x,y,player_id)
 	o.hearts = 3
 	o.player_id = player_id
 	o.hit_timer = nil
+	o.flicker = false
 	
 	o.sprite_id = 55
 	if(player_id == 1) then
@@ -157,7 +158,15 @@ function player:draw()
 	elseif (self.walk_state == 3) then
 		sprite_id += 2
 	end
-	spr(sprite_id, self.x, self.y, 1, 1, self.is_looking_left)
+	
+	if not (self.hit_timer == nil) then
+		self.flicker = not self.flicker
+		if (self.flicker == false) then
+			spr(sprite_id, self.x, self.y, 1, 1, self.is_looking_left)
+		end
+	else
+		spr(sprite_id, self.x, self.y, 1, 1, self.is_looking_left)	
+	end
 	self:draw_hearts()
 end
 
@@ -167,6 +176,7 @@ function player:countdown_timer()
 		self.hit_timer -= 1
 		if (self.hit_timer <= 0) then
 			self.hit_timer = nil
+			self.flicker = false
 		end
 	end
 end
