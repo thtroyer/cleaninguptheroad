@@ -84,13 +84,35 @@ function spawn_car()
 	car_timer -= 1
 end
 
+-- recursive
+function create_a_trash()
+	t = trash:new()
+	
+		--avoid generating in top right
+	if t.x < 20 and t.y < 20 then
+		return create_a_trash()
+	end
+	
+	-- prefer generating trash beside road
+	if t.x > 20 and t.x < 104 then
+		if random_int(0,100) > 5 then
+			return create_a_trash()
+		end
+	end
+	return t
+end
+
+function trash_gen(c)
+	for i = 1,c,1 do
+		add(trashes, create_a_trash())
+	end
+end
+
 -- pico-8 hooks
 function _init()
 	add(players, player:new(10,rnd(5)+10,1))
 	add(players, player:new(5,rnd(20)+20,2)) 
-	for i = 1,20,1 do
-		add(trashes, trash:new())
-	end
+	trash_gen(20)
 
 	car_timer = random(1*30, 3*30)
 end
@@ -279,7 +301,7 @@ end
 -- trash object
 trash = {}
 
-function trash:new()
+function trash:new(x, y)
 	local o = {}
 	setmetatable(o,self)
 	self.__index = self
