@@ -108,6 +108,12 @@ function trash_gen(c)
 	end
 end
 
+function cars_collision()
+	for _,car in pairs(cars) do
+		car:collide(players)
+	end
+end
+
 -- pico-8 hooks
 function _init()
 	add(players, player:new(10,rnd(5)+10,1))
@@ -116,12 +122,6 @@ function _init()
 
 	car_timer = random(1*30, 3*30)
 	music(0)
-end
-
-function cars_collision()
-	for _,car in pairs(cars) do
-		car:collide(players)
-	end
 end
 
 function _update()
