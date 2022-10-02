@@ -137,13 +137,11 @@ end
 -- pico-8 hooks
 function _init()
 	title_screen = true
-	
 	add(players, player:new(10,rnd(5)+10,1))
 	add(players, player:new(5,rnd(20)+20,2)) 
 	trash_gen(20)
 
 	car_timer = random(1*30, 3*30)
-	--music(0)
 end
 
 function _update()
