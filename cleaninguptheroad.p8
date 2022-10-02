@@ -137,6 +137,7 @@ end
 -- pico-8 hooks
 function _init()
 	title_screen = true
+	draw_title_screen()
 	add(players, player:new(10,rnd(5)+10,1))
 	add(players, player:new(5,rnd(20)+20,2)) 
 	trash_gen(20)
@@ -165,8 +166,7 @@ function _update()
 	cars_collision()
 end
 
-function _draw()
-	if title_screen then
+function draw_title_screen()
 		cls()
 		px9_decomp(0,0,0x0800,pget,pset)
 		map(0,16)
@@ -174,6 +174,11 @@ function _draw()
 		print('cleaning up the road', 25, 15, 7)
 		print('press ❎ / 🅾️', 39, 116, 0)
 		print('press ❎ / 🅾️', 38, 115, 7)
+		return	
+end
+
+function _draw()
+	if title_screen then
 		return
 	end
 	
