@@ -56,6 +56,10 @@ function handle_controllers()
 		if(btnp(❎,i-1)) then
 			player:pickup(trashes)
 		end
+		
+		if(btnp(🅾️,i-1)) then
+			player:throw_trash()
+		end
 	end
 end
 
@@ -68,7 +72,7 @@ function is_any_trash_dropped_in_can()
 			end
 		end
 		
-		if not is_held then
+		if (not is_held) and trash.z < 1 then
 			if (trash.x > 5) and (trash.x < 12) and (trash.y > 82) and (trash.y < 88) then
 			del(trashes, trash)
 			end
@@ -137,6 +141,12 @@ function title_controllers()
 	end
 end
 
+function update_trash()
+	for t in all(trashes) do
+		t:update()
+	end
+end
+
 -- pico-8 hooks
 function _init()
 	title_screen = true
@@ -166,6 +176,7 @@ function _update()
 	spawn_car()
 	move_cars()
 	cars_collision()
+	update_trash()
 end
 
 function draw_title_screen()
@@ -342,6 +353,20 @@ function player:run_over()
 	end
 end
 
+function player:throw_trash()
+	if self.trash_obj == nil then
+		return
+	end
+	
+	if (self.is_looking_left) do
+		self.trash_obj.dx = -2
+	else
+		self.trash_obj.dx = 2
+	end
+	self.trash_obj.dz = 5
+	self.trash_obj = nil 
+end
+
 function player:draw_hearts()
 	spr(24+self.player_id, 0, (self.player_id * 10) - 7)
 	for i = 1,self.hearts,1 do
@@ -362,12 +387,32 @@ function trash:new(x, y)
 	o.y = rnd(115) + 5
 	o.sprite_id = rnd(7)+3
 	o.is_recyclable = false
+	o.z = 5
+	o.shadow = true
+
+	o.dx = 0
+	o.dz = 0
+	o.grav = -0.5
 	
 	return o
 end
 
+function trash:update()
+	self.x += self.dx
+	self.dz +=	self.grav
+	self.z += self.dz
+	if (self.z <= 0) do
+		self.z = 0
+		self.dx = 0
+	end 
+end
+
 function trash:draw()
-	spr(self.sprite_id, self.x, self.y)
+	self.shadow = not self.shadow
+	spr(self.sprite_id, self.x, self.y-(self.z/2))
+	if (self.z ~= 0 and self.shadow) do
+		spr(20, self.x, self.y)
+	end
 end
 
 
@@ -468,9 +513,9 @@ __gfx__
 555555555555555555577555555555550000000000000000000a0a00000000000000000000000000088000880000000011111111111161111111111111116111
 5557755555555555555775555555555500000000000000000000a00000000000000000000004440008e888e80000000011111111111111111111111111111111
 555775555555555555577555555555550000000000000000011a11100000000000000000004fff40008eee8000000000e11111111111111e2111111111111112
-55577555555555555557755577777777000000000000000011111111000000000000000004f5f5f408e1e1e800000000eeeeeeeeeeeeeeee2222222222222222
-55577555555555555557755577777777000000000000000011111611000000000008080004fffff408ee8ee800000000e1eeeeeeee77771e2122222222333312
-5557755555555555555775555555555500000000000000001111111100000000008e878004f888f408eeeee800000000e1eeeeeeeeeeee1e2122222222222212
+55577555555555555557755577777777000110000000000011111111000000000000000004f5f5f408e1e1e800000000eeeeeeeeeeeeeeee2222222222222222
+55577555555555555557755577777777001111000000000011111611000000000008080004fffff408ee8ee800000000e1eeeeeeee77771e2122222222333312
+5557755555555555555775555555555500011000000000001111111100000000008e878004f888f408eeeee800000000e1eeeeeeeeeeee1e2122222222222212
 55577555555555555557755555555555000000000000000011111111000000000008e800040fff04008eee8000000000e1eeeeeeeeeeee1e2122222222222212
 555555555555555555577555555555550000000000000000011111100000000000008000040000040000000000000000e1eeeeeeeeeeee1e2122222222222212
 6666666666666666bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb000000000000000000000000000000000000000000000000e1eeeeeeeeeeee1e2122222222222212
