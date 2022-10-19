@@ -4,7 +4,6 @@ __lua__
 --cleaning up the road
 --a work in progress
 
-#include px9.lua
 
 -- global lists
 players = {}
@@ -35,6 +34,10 @@ function debug(msg)
 	print(msg, 20, 20, 7)
 end
 
+-- px9 compression import
+#include px9_decomp.lua
+
+-- global game logic functions
 function handle_controllers()
 	for i,player in pairs(players) do
 		local mov_x = 0
