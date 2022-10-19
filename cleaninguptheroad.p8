@@ -387,7 +387,7 @@ function trash:new(x, y)
 	o.y = rnd(115) + 5
 	o.sprite_id = rnd(7)+3
 	o.is_recyclable = false
-	o.z = 5
+	o.z = 0
 	o.shadow = true
 
 	o.dx = 0
