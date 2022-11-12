@@ -8,7 +8,6 @@ __lua__
 --add description
 --music toggle
 --adjust trash can collision
---gameover screen
 
 -- global lists
 players = {}
@@ -27,7 +26,8 @@ level_timer = 300
 total_trash_cleaned = 0
 trash_cleaned = 0
 end_of_level_timer = 60
-
+gameover_timer = nil
+			
 -- utility methods
 function random(minimum, maximum)
 	return rnd(maximum-minimum) + minimum
@@ -117,6 +117,42 @@ end
 
 function draw_level_screen()
 	level_timer -= 1
+
+	if level == "gameover" then
+		if level_timer < 250 then
+			print('gameover', 
+				45, 35, 7)	
+		end
+		if level_timer < 200 then
+			print('total cleaned up: ',
+				25, 55, 7) 
+		end
+		
+		if level_timer < 160 then
+			print('total cleaned up: ' .. total_trash_cleaned, 
+				25, 55, 7)	
+		end
+		
+		if level_timer <= 0 then
+			-- reset global states
+			trashes = {}
+			players = {}
+			cars = {}
+			
+			title_screen = true
+			level_screen = false
+			level_timer = 300
+			level = 1
+			draw_title_screen()
+			level_start(1)
+
+			total_trash_cleaned = 0
+			trash_cleaned = 0
+		end
+		
+		return
+	end
+	
 	if (level_timer <= 0) then
 		level_screen = false
 		trash_cleaned = 0
@@ -214,6 +250,26 @@ function level_start(l)
 	
 end
 
+function out_of_hearts()
+
+	if not (gameover_timer == nil) then
+		gameover_timer -= 1
+		if (gameover_timer <= 0) then
+			level_screen = true
+			level = "gameover"
+			level_timer = 300
+			gameover_timer = nil
+		end
+		return
+	end
+
+	for p in all(players) do
+		if p.hearts == 0 then
+			gameover_timer = 80
+		end
+	end
+end
+
 -- pico-8 hooks
 function _init()
 	title_screen = true
@@ -238,6 +294,10 @@ function _update()
 		end
 		return
 	end
+	
+	if level_screen then
+		return
+	end
 
 	handle_controllers()
 	is_any_trash_dropped_in_can()
@@ -246,6 +306,7 @@ function _update()
 	cars_collision()
 	update_trash()
 	level_complete()
+	out_of_hearts()
 end
 
 function level_complete()
@@ -307,7 +368,7 @@ function player:new(x,y,player_id)
 	o.trash_obj = nil
 	o.walk_timer = nil
 	o.walk_state = 0
-	o.hearts = 3
+	o.hearts = 1
 	o.player_id = player_id
 	o.hit_timer = nil
 	o.flicker = false
