@@ -6,8 +6,6 @@ __lua__
 
 --todo before v1.0
 --add description
---music toggle
---adjust trash can collision
 
 -- global lists
 players = {}
@@ -27,6 +25,7 @@ total_trash_cleaned = 0
 trash_cleaned = 0
 end_of_level_timer = 60
 gameover_timer = nil
+music_on = true
 			
 -- utility methods
 function random(minimum, maximum)
@@ -271,8 +270,26 @@ function out_of_hearts()
 	end
 end
 
+function toggle_music()
+	music_on = not music_on
+	if (music_on) then
+		start_music()
+	else
+		stop_music()
+	end
+end
+
+function start_music()
+	if (music_on) then
+		music(0)
+	end
+end
+function stop_music()
+	music(-1,300)
+end
 -- pico-8 hooks
 function _init()
+	menuitem(2, "toggle music", toggle_music)
 	title_screen = true
 	level = 1
 	draw_title_screen()
@@ -289,7 +306,7 @@ function _update()
 		end
 		if title_timer == 0 then
 			title_screen = false
-			music(0)
+			start_music()
 			level_screen = true
 			level_timer = 300
 		end
@@ -369,7 +386,7 @@ function player:new(x,y,player_id)
 	o.trash_obj = nil
 	o.walk_timer = nil
 	o.walk_state = 0
-	o.hearts = 1
+	o.hearts = 3
 	o.player_id = player_id
 	o.hit_timer = nil
 	o.flicker = false
