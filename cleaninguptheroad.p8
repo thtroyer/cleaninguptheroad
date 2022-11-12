@@ -84,7 +84,8 @@ function is_any_trash_dropped_in_can()
 		end
 		
 		if (not is_held) and trash.z < 1 then
-			if (trash.x > 5) and (trash.x < 12) and (trash.y > 82) and (trash.y < 88) then
+			if (trash.x > 4) and (trash.x < 13) 
+					and (trash.y > 80) and (trash.y < 90) then
 				del(trashes, trash)
 				trash_cleaned += 1
 				total_trash_cleaned += 1
