@@ -4,6 +4,11 @@ __lua__
 --cleaning up the road
 --a work in progress
 
+--todo before v1.0
+--add description
+--music toggle
+--adjust trash can collision
+--gameover screen
 
 -- global lists
 players = {}
