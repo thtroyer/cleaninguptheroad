@@ -151,8 +151,8 @@ end
 function _init()
 	title_screen = true
 	draw_title_screen()
-	add(players, player:new(10,rnd(5)+10,1))
-	add(players, player:new(5,rnd(20)+20,2)) 
+	add(players, player:new(10,rnd(20)+20,1))
+	add(players, player:new(5,rnd(20)+40,2)) 
 	trash_gen(20)
 
 	car_timer = random(1*30, 3*30)
