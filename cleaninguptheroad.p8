@@ -2,10 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 38
 __lua__
 --cleaning up the road
---a work in progress
-
---todo before v1.0
---add description
+--a simple game for kids
 
 -- global lists
 players = {}
