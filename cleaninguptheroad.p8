@@ -18,7 +18,7 @@ title_screen_timer = nil
 title_screen = true
 level_screen = false
 level = 1
-level_timer = 500
+level_timer = 300
 total_trash_cleaned = 0
 trash_cleaned = 0
 end_of_level_timer = 60
@@ -85,8 +85,8 @@ function is_any_trash_dropped_in_can()
 				total_trash_cleaned += 1
 			end
 			
-			if (trash.x > 128 or trash.x < 0
-					or trash.y > 128 or trash.y < 0) then
+			if (trash.x > 124 or trash.x < 0
+					or trash.y > 124 or trash.y < 0) then
 				del(trashes, trash)
 			end
 		end
@@ -118,32 +118,32 @@ function draw_level_screen()
 		end_of_level_timer = 60
 	end
 	
-	if level_timer < 450 then
+	if level_timer < 250 then
 		print('level ' .. level, 
 			45, 35, 7)	
 	end
 	
 	if level == 1 then
-		if level_timer < 350 then
+		if level_timer < 150 then
 			level_timer = 0
 		end
 		return
 	end
 	
-	if level_timer < 400 then
+	if level_timer < 200 then
 		print('trash cleaned up: ', 
 			25, 55, 7)
 	end
-	if level_timer < 360 then
+	if level_timer < 160 then
 		print('trash cleaned up: ' .. trash_cleaned, 
 			25, 55, 7)
 	end
-	if level_timer < 300 then
+	if level_timer < 100 then
 		print('total cleaned up: ',
 			25, 65, 7) 
 	end
 	
-	if level_timer < 260 then
+	if level_timer < 60 then
 		print('total cleaned up: ' .. total_trash_cleaned, 
 			25, 65, 7)	
 	end
@@ -229,7 +229,7 @@ function _update()
 			title_screen = false
 			music(0)
 			level_screen = true
-			level_timer = 500
+			level_timer = 300
 		end
 		return
 	end
@@ -249,7 +249,7 @@ function level_complete()
 		
 		if end_of_level_timer <= 0 then
 			level += 1
-			level_timer = 500
+			level_timer = 300
 			level_screen = true
 			level_start(level)
 		end
