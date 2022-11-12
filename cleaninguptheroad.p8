@@ -4,6 +4,11 @@ __lua__
 --cleaning up the road
 --a simple game for kids
 
+--copyright tom troyer 2022
+--all rights reserved
+
+--released under mit license
+
 -- global lists
 players = {}
 trashes = {}
@@ -346,6 +351,7 @@ function draw_title_screen()
 		print('cleaning up the road', 25, 15, 7)
 		print('press ❎ / 🅾️', 39, 116, 0)
 		print('press ❎ / 🅾️', 38, 115, 7)
+		
 		return	
 end
 
