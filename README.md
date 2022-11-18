@@ -6,9 +6,9 @@ A simple PICO-8 game I'm creating with my daughter.
 Play the web version here:
 https://thtroyer.github.io/cleaninguptheroad/
 
-##Controls:
+## Controls:
 
-###PICO-8 controller:
+### PICO-8 controller:
 
 D-pad to move
 
@@ -18,7 +18,7 @@ O to throw
 
 Start for options
 
-###Keyboard
+### Keyboard
 
 Player 1: Arrow keys = D-pad, X = Pickup/drop, Z = throw
 
