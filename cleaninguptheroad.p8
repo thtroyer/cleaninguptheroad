@@ -28,6 +28,7 @@ trash_cleaned = 0
 end_of_level_timer = 60
 gameover_timer = nil
 music_on = true
+is_swap_cont = false
 			
 -- utility methods
 function random(minimum, maximum)
@@ -51,7 +52,14 @@ end
 
 -- global game logic functions
 function handle_controllers()
-	for i,player in pairs(players) do
+	for j,player in pairs(players) do
+		if (is_swap_cont) then
+			if (j==1) then i = 2 end
+			if (j==2) then i = 1 end
+		else
+			i = j
+		end
+		
 		local mov_x = 0
 		if(btn(⬅️,i-1)) then
 			mov_x = -1
@@ -281,6 +289,10 @@ function toggle_music()
 	end
 end
 
+function swap_controllers()
+	is_swap_cont = not is_swap_cont
+end
+
 function start_music()
 	if (music_on) then
 		music(0)
@@ -292,6 +304,7 @@ end
 -- pico-8 hooks
 function _init()
 	menuitem(2, "toggle music", toggle_music)
+	menuitem(3, "swap controllers", swap_controllers)
 	title_screen = true
 	level = 1
 	draw_title_screen()
