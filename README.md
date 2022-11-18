@@ -1,5 +1,6 @@
 # Cleaning up the road
 A simple PICO-8 game I'm creating with my daughter.
+
 ![Pico8 cart](docs/cleaninguptheroad.p8.png)
 
 Play the web version here:
@@ -7,9 +8,13 @@ https://thtroyer.github.io/cleaninguptheroad/
 
 ##Controls:
 ###PICO-8 controller:
+
 D-pad to move
+
 X to pick up
+
 O to throw
+
 Start for options
 
 ###Keyboard
