@@ -7,6 +7,7 @@ Play the web version here:
 https://thtroyer.github.io/cleaninguptheroad/
 
 ##Controls:
+
 ###PICO-8 controller:
 
 D-pad to move
@@ -18,8 +19,11 @@ O to throw
 Start for options
 
 ###Keyboard
+
 Player 1: Arrow keys = D-pad, X = Pickup/drop, Z = throw
+
 Player 2: ESDF = D-pad, Q = Pickup/drop, W = throw
+
 P/Enter key - console menu
 
 ## About
