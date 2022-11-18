@@ -4,6 +4,7 @@ A simple PICO-8 game I'm creating with my daughter.
 ![Pico8 cart](docs/cleaninguptheroad.p8.png)
 
 Play the web version here:
+
 https://thtroyer.github.io/cleaninguptheroad/
 
 ## Controls:
@@ -35,5 +36,3 @@ The .p8 file in this repository will be the most up-to-date.  I'll try update th
 ## PICO-8 resources:
 https://www.lexaloffle.com/pico-8.php
 
-## Web version
-A web-playable version is available here:  
