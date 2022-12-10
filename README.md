@@ -1,13 +1,15 @@
-#pico8 #cleaninguptheroad #wip #videogame #project
-
 # Cleaning up the road
 A simple,kid-friendly PICO-8 game.
 
-Inspired by other PICO-8 games made by parents with their children, I asked my young daughter if she wanted to make a game with me.  "Yes!", she said.  "What should it be about?" "We would be cleaning garbage off the road."  "And what should we call it?" "Cleaning up the road!"
+Inspired by other PICO-8 games made by parents with their children, I asked my young daughter if she wanted to make a game with me.  *"Yes!"*    
+**"What should it be about?"**     "We would be cleaning garbage off the road."*    
+**"And what should we call it?"**     *"Cleaning up the road!"*    
 
 This game is the eventual result after trying a bunch of ideas, testing, and tweaking.  It is not a hard game, appropriate for young kids to learn how controllers work.  With so many games being too difficult for preschool age, I erred on the side of simpler and easier.
 
-_All that said, make sure your kids understand the dangers of roads.__
+_All that said, make sure your kids understand the dangers of roads._
+
+Cart file:
 
 ![Pico8 cart](docs/cleaninguptheroad.p8.png)
 
@@ -16,6 +18,8 @@ Play the web versions available here:
 https://thtroyer.github.io/cleaninguptheroad/
 
 (todo: BBS link)
+
+![Gameplay gif](docs/gameplay.gif)
 
 ## Controls:
 
@@ -48,6 +52,4 @@ Music can be toggled on/off and controls can be swapped for player 1 and 2.
 ## About
 This is my first PICO-8 project and my first released video game.  Code is in Lua and the .p8 files are viewable as text, but the project is best viewed in the PICO-8 environment itself.
 
-## License
-Copyright Tom Troyer 2022
-Licensed under [MIT license](LICENSE)
+
