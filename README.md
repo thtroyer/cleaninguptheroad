@@ -9,17 +9,21 @@ This game is the eventual result after trying a bunch of ideas, testing, and twe
 
 _All that said, make sure your kids understand the dangers of roads._
 
-Cart file:
+![Gameplay gif](docs/gameplay0.gif)
+![Gameplay gif](docs/gameplay1.gif)
+![Gameplay gif](docs/gameplay2.gif)
+
+## Ways to play:
+PICO-8 cart file (also available on `splore`)
 
 ![Pico8 cart](docs/cleaninguptheroad.p8.png)
 
-Play the web versions available here:
+### Web versions:
 
 https://thtroyer.github.io/cleaninguptheroad/
 
 (todo: BBS link)
 
-![Gameplay gif](docs/gameplay.gif)
 
 ## Controls:
 
