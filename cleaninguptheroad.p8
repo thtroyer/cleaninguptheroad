@@ -486,14 +486,7 @@ function player:move(mov_x, mov_y)
 	self.x += self.dx
 	self.y += self.dy
 
-	if self.trash_obj != nil then
-		if self.is_looking_left then
-			self.trash_obj.x = self.x - 6
-		else
-			self.trash_obj.x = self.x + 6
-		end
-		self.trash_obj.y = self.y + 2
-	end
+	self:move_carried_trash()
 	
 	self.walk_timer -= 1
 	
@@ -508,6 +501,17 @@ function player:move(mov_x, mov_y)
 		self.x = 130
 	elseif self.x < -8 then 
 		self.x = -8
+	end
+end
+
+function player:move_carried_trash()
+	if self.trash_obj != nil then
+		if self.is_looking_left then
+			self.trash_obj.x = self.x - 6
+		else
+			self.trash_obj.x = self.x + 6
+		end
+		self.trash_obj.y = self.y + 2
 	end
 end
 
@@ -527,6 +531,8 @@ function player:pickup(trashes)
 			end
 		end
 	end
+	
+	self:move_carried_trash()
 end
 
 function player:run_over()
