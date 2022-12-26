@@ -13,7 +13,7 @@ _All that said, make sure your kids understand the dangers of roads._
 ![Gameplay gif](docs/gameplay1.gif)
 
 ## Ways to play:
-PICO-8 cart file (also available on `splore`)
+PICO-8 cart file (also available on `splore` *soon*)
 
 ![Pico8 cart](docs/cleaninguptheroad.p8.png)
 
