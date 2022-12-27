@@ -624,13 +624,7 @@ function car:new()
 	setmetatable(o,self)
 	self.__index = self
 	
-	sprite_rng = random_int(1,2)
-	--if (sprite_rng == 1) then
-	--	o.sprite_id = 12
-	--else
-		o.sprite_id = 14
- --end
-	
+	o.sprite_id = 14
 	o.moving_up = random_int(1,2) == 1
 	
 	if o.moving_up then
