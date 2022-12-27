@@ -1,5 +1,5 @@
 pico-8 cartridge // http://www.pico-8.com
-version 38
+version 39
 __lua__
 --cleaning up the road
 --a simple game for kids
@@ -548,7 +548,7 @@ function player:throw_trash()
 		return
 	end
 	
-	if (self.is_looking_left) do
+	if (self.is_looking_left) then
 		self.trash_obj.dx = -2
 	else
 		self.trash_obj.dx = 2
@@ -591,7 +591,7 @@ function trash:update()
 	self.x += self.dx
 	self.dz +=	self.grav
 	self.z += self.dz
-	if (self.z <= 0) do
+	if (self.z <= 0) then
 		self.z = 0
 		self.dx = 0
 	end 
@@ -600,7 +600,7 @@ end
 function trash:draw()
 	self.shadow = not self.shadow
 	spr(self.sprite_id, self.x, self.y-(self.z/2))
-	if (self.z ~= 0 and self.shadow) do
+	if (self.z ~= 0 and self.shadow) then
 		spr(20, self.x, self.y)
 	end
 end
