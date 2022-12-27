@@ -1,5 +1,5 @@
 # Cleaning up the road
-A simple, kid-friendly, 2-player PICO-8 game.
+A simple, kid-friendly 2-player PICO-8 game.
 
 Inspired by other PICO-8 games made by parents with their children, I asked my young daughter if she wanted to make a game with me.  *"Yes!"*    
 **"What should it be about?"**     *"We would be cleaning garbage off the road."*    
@@ -7,7 +7,9 @@ Inspired by other PICO-8 games made by parents with their children, I asked my y
 
 This game is the eventual result after trying a bunch of ideas, testing, and tweaking.  It is not a hard game, appropriate for young kids to learn how controllers work.  With so many games being too difficult for preschool age, I erred on the side of simpler and easier.
 
-_All that said, make sure your kids understand the dangers of roads._
+This is my first PICO-8 project and my first released video game. Enjoy!
+
+_Make sure your kids understand the dangers of roads._
 
 ![Gameplay gif](docs/gameplay0.gif)
 ![Gameplay gif](docs/gameplay1.gif)
@@ -19,9 +21,9 @@ PICO-8 cart file (also available on `splore` *soon*)
 
 ### Web versions:
 
-https://thtroyer.github.io/cleaninguptheroad/
+[Cleaning up the Road](https://www.lexaloffle.com/bbs/?tid=50595) on PICO-8 BBS.
 
-(todo: BBS link)
+[Cleaning up the Road](https://thtroyer.github.io/cleaninguptheroad/) on Github pages.
 
 
 ## Controls:
@@ -50,9 +52,9 @@ P/Enter key - console menu
 ```
 
 ## Menu options
-Music can be toggled on/off and controls can be swapped for player 1 and 2.
+Music can be toggled on/off.
+Controls can be swapped for player 1 and 2.
 
-## About
-This is my first PICO-8 project and my first released video game.  Code is in Lua and the .p8 files are viewable as text, but the project is best viewed in the PICO-8 environment itself.
-
+## Code
+Code is best views in the PICO-8 environment itself, but you can view the code in the cleaninguptheroad.p8 file in this repository as plaintext.
 
